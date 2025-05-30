@@ -9,6 +9,14 @@
 - `public/rules/`    … 利用規約拡大画像
 - `public/images/`   … イメージ画像
 
+## 定義例
+
+- "D:\nasubi\inuichiba-ffimages\public\rules\rules_dog.jpg"のとき
+- const { baseDir } = require("../lib/env.js");
+- uri: `${baseDir}rules/rules_arrival.jpg`  ※publicまでがbaseDirに入る
+
+## ブラウザで表示させるとき
+- https://inuichiba-ffimages.pages.dev/rules/rules_dog.jpg
 
 
 ## キャッシュしたくなったときの覚書
