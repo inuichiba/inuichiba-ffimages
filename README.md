@@ -11,12 +11,12 @@
 
 ## 定義例
 
-- "D:\nasubi\inuichiba-ffimages\public\rules\rules_dog.jpg"のとき
+- "D:\nasubi\inuichiba-ffimages\public\rules\rules_arrival.jpg"のとき
 - const { baseDir } = require("../lib/env.js");
 - uri: `${baseDir}rules/rules_arrival.jpg`  ※publicまでがbaseDirに入る
 
 ## ブラウザで表示させるとき
-- https://inuichiba-ffimages.pages.dev/rules/rules_dog.jpg
+- https://inuichiba-ffimages.pages.dev/rules/rules_arrival.jpg
 
 
 ## キャッシュしたくなったときの覚書
@@ -27,7 +27,8 @@
 - コメントはゴミになるので、削除して_headersに反映すること
 - 本番運用フェーズでアクセス数や帯域が増えたら、
 - 以下のCloudflare Pages用 _headers を使ってキャッシュ最適化を検討します
-- 現在はCloudflare標準CDNで十分なので、個別制御は行っていません
+- 現在はCloudflare標準CDNで十分なので、個別制御は行っていませんが
+- 評価のため一時的にキャッシュ最適化を行っています
 - （テンプレートは /_headers に準備済み。今はgit対象。説明は以下の通り）
 
 # ✅ 画像ファイルは長期キャッシュ（2ヶ月=5184000秒） immutableで変更不可扱い

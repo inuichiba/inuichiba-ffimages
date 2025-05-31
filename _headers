@@ -1,0 +1,7 @@
+
+/*.(jpg|jpeg|png|gif|webp)
+  Cache-Control: public, max-age=5184000, immutable
+
+/*.(js|json)
+  Cache-Control: public, max-age=604800
+
