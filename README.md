@@ -14,9 +14,9 @@
 
 ## 定義例
  - "D:\nasubi\inuichiba-ffimages\public\rules\rules_arrival.jpg"のとき
- -- import { getEnv } from "../lib/env.js";
-    -- const { baseDir } = getEnv(env); ※必ず関数内で定義する
-    -- uri: ${baseDir}rules/rules_arrival.jpg ※publicまでがbaseDirに入る
+     -- import { getEnv } from "../lib/env.js";
+     -- const { baseDir } = getEnv(env);  ※必ず関数内で定義する
+     -- uri: ${baseDir}rules/rules_arrival.jpg  ※publicまでがbaseDirに入る
 
 ---
 
@@ -24,7 +24,7 @@
  - https://inuichiba-ffimages.pages.dev/rules/rules_arrival.jpg
 
 ## キャッシュしたくなったときの覚書
- - ファイルパス："D:\nasubi\inuichiba-ffimages 配下の _headers"
+ - ファイルパス："D:\nasubi\inuichiba-ffimages" 配下の "_headers"
 
 ---
 
