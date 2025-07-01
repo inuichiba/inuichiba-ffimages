@@ -82,11 +82,11 @@
        3. npx wranglerコマンド → Cloudflare Pagesが自動で新しいデプロイを行う
        4. CDNキャッシュも自動更新
 
-       git add -A
-       git commit -m "fix: update images"
-       git push
-       npx wrangler login
-       npx wrangler pages deploy
+       - git add -A
+       - git commit -m "fix: update images"
+       - git push
+       - npx wrangler login
+       - npx wrangler pages deploy
 
    - 注意点
 
