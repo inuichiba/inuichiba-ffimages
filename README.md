@@ -1,11 +1,12 @@
-inuichiba-ffimages
+﻿inuichiba-ffimages
 このリポジトリは、LINE BOTのFlex Messageで使用する画像資産をCloudflare Pagesから配信するためのものです。
 
 構成
 public/carousel/ … カルーセル画像（最初に出てくる画像。例：施設案内やP&R）
 public/dogrun/ … ドッグラン拡大画像
 public/rules/ … 利用規約拡大画像
-public/images/ … イメージ画像
+public/images/ … イメージ画像(QRコードなど)
+public/menu/ … リッチメニュー画像
 定義例
 "D:\nasubi\inuichiba-ffimages\public\rules\rules_arrival.jpg"のとき
 const { baseDir } = require("../lib/env.js");
@@ -65,11 +66,11 @@ Zone IDでのPurgeは使わない Pagesは通常のDNSサイトと別枠（対�
 git add .
 git commit -m "fix: update images"
 git push
-npx wrangler pages deploy ./public --project-name=inuichiba-ffimages --branch=main
+npx wrangler pages deploy
 
 
 🔹 注意点
 
 通常はファイル名変更不要
-Development Modeを使えば「名前を変えずに」即時確認可能
+「名前を変えずに」即時確認可能
 Zone IDでのPurgeは不要、無意味（Pagesは対象外）
