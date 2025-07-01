@@ -76,7 +76,7 @@
    - Zone IDでのPurgeは使わない Pagesは通常のDNSサイトと別枠（対象外）
 
  ✅ 運用手順
-    🔹 更新
+   - 更新
        1. 画像やJSファイルを修正
        2. Gitでコミット & Push
        3. npx wranglerコマンド → Cloudflare Pagesが自動で新しいデプロイを行う
@@ -88,8 +88,8 @@
        npx wrangler login
        npx wrangler pages deploy
 
-  🔹 注意点
+   - 注意点
 
-   - 通常はファイル名変更不要
-   - 「名前を変えずに」即時確認可能
-   - Zone IDでのPurgeは不要、無意味（Pagesは対象外）
+       - 通常はファイル名変更不要
+       - 「名前を変えずに」即時確認可能
+       - Zone IDでのPurgeは不要、無意味（Pagesは対象外）
