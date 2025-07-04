@@ -1,4 +1,4 @@
-﻿# 改行コードの強制は無意味なので、画像系では設定しない
+# 改行コードの強制は無意味なので、画像系では設定しない
 
 # バイナリファイル（画像）
 *.png     binary
@@ -10,7 +10,7 @@
 *.ico     binary
 
 # テキストファイル（最小限）
-README.md    text
+README.md      text
 .gitattributes text
 .gitignore     text
 _headers       text

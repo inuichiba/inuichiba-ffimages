@@ -1,14 +1,24 @@
-﻿# inuichiba-ffimages
-  このリポジトリは、LINE BOTのFlex Messageで使用する画像資産をCloudflare Pagesから配信するためのものです。
+# inuichiba-ffimages
+  このリポジトリは、LINE BOT の `Flex Message`、`QRコードなどのイメージ画像`、`タブ付きリッチメニュー画像` で使用する画像資産をCloudflare Pagesから配信するためのものです。
 
 ---
 
 ## 構成
- - public/carousel/ … カルーセル画像（最初に出てくる画像。例：施設案内やP&R）
- - public/dogrun/ … ドッグラン拡大画像
- - public/rules/ … 利用規約拡大画像 
- - public/images/ … イメージ画像(QRコードなど)
- - public/menu/ … リッチメニュー画像
+<pre>
+  public    # 画像ファイル一式
+    -- public/carousel/ # カルーセル画像（最初に出てくる画像。例：施設案内やP&R）
+    -- public/dogrun/   # ドッグラン拡大画像
+    -- public/rules/    # 利用規約拡大画像 
+    -- public/images/   # イメージ画像(QRコードなど)
+    -- public/menu/     # タブ付きリッチメニュー画像
+  
+  .git      # Gitファイル
+    .git             # Git が使用するファイル群一式 
+    .gitignore       # Git に含めないファイルを記述(秘匿ファイルやログなど不必要なファイル) 
+    .gitattributes   # このリポジトリ内のファイルを、Git がどう扱うかを指定する設定ファイル 
+ 
+ README.md  # このファイル(このディレクトリの説明を書いたファイル)
+</pre> 
 
 --- 
 
@@ -76,20 +86,23 @@
    - Zone IDでのPurgeは使わない Pagesは通常のDNSサイトと別枠（対象外）
 
  ✅ 運用手順
-   - 更新
-       1. 画像やJSファイルを修正
+   - 更新(通常は `D:\nasubi\inuichiba-ffscripts\ffimages-upload-deploy.ps1` を使う)
+
+       1. 画像やJSファイルなどを修正
        2. Gitでコミット & Push
        3. npx wranglerコマンド → Cloudflare Pagesが自動で新しいデプロイを行う
        4. CDNキャッシュも自動更新
-
+       --- 
+       - (画像やJSファイルなどを修正後)
        - git add -A
        - git commit -m "fix: update images"
-       - git push
+       - git push (初回に `git push -u origin main` を実行していればこれだけでよい)
        - npx wrangler login
        - npx wrangler pages deploy
+       - (GitHubに登録され、CDNキャッシュも自動更新)
 
    - 注意点
 
        - 通常はファイル名変更不要
-       - 「名前を変えずに」即時確認可能
+       - **名前を変えずに** 即時確認可能
        - Zone IDでのPurgeは不要、無意味（Pagesは対象外）
