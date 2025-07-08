@@ -4,29 +4,32 @@
 ---
 
 ## 構成
-<pre>
-  public    # 画像ファイル一式
-    -- public/carousel/ # カルーセル画像（最初に出てくる画像。例：施設案内やP&R）
-    -- public/dogrun/   # ドッグラン拡大画像
-    -- public/rules/    # 利用規約拡大画像 
-    -- public/images/   # イメージ画像(QRコードなど)
-    -- public/menu/     # タブ付きリッチメニュー画像
+- gitとCloudflare Pagesに必要なファイル以外入れないこと(最低限のファイル構成で運用するポリシー)
+
+```text
+  public             # 画像ファイル一式
+    public/carousel/ # カルーセル画像（最初に出てくる画像。例：施設案内やP&R）
+    public/dogrun/   # ドッグラン拡大画像
+    public/rules/    # 利用規約拡大画像 
+    public/images/   # イメージ画像(QRコードなど)
+    public/menu/     # タブ付きリッチメニュー画像
   
-  .git      # Gitファイル
-    .git             # Git が使用するファイル群一式 
-    .gitignore       # Git に含めないファイルを記述(秘匿ファイルやログなど不必要なファイル) 
-    .gitattributes   # このリポジトリ内のファイルを、Git がどう扱うかを指定する設定ファイル 
+  .git/              # Git が使用するファイル群一式 
+  .gitignore         # Git に含めないファイルを記述(ログなど不必要なファイルや秘匿ファイル) 
+  .gitattributes     # このリポジトリ内のファイルを、Git がどう扱うかを指定する設定ファイル 
+
+  _headers           # CDNキャッシュを行うファイルを定義(後述) 
  
- README.md  # このファイル(このディレクトリの説明を書いたファイル)
-</pre> 
+  README.md          # このファイル(このディレクトリの説明を書いたファイル)
+``` 
 
 --- 
 
 ## 定義例
- - "D:\nasubi\inuichiba-ffimages\public\rules\rules_arrival.jpg"のとき
-     - import { getEnv } from "../lib/env.js";
-     - const { baseDir } = getEnv(env);  ※必ず関数内で定義する
-     - uri: ${baseDir}rules/rules_arrival.jpg  ※publicまでがbaseDirに入る
+ - https://inuichiba-ffimages.pages.dev/rules/rules_arrival.jpgのとき
+     - import { getEnv } from "../lib/env.js"; ※相対パスで定義する 
+     - const { baseDir } = getEnv(env);        ※必ず関数内で定義する(遅延実行が必要)
+     - uri: ${baseDir}rules/rules_arrival.jpg  ※/までがbaseDirに入る
 
 ---
 
@@ -34,7 +37,9 @@
  - https://inuichiba-ffimages.pages.dev/rules/rules_arrival.jpg
 
 ## キャッシュしたくなったときの覚書
- - ファイルパス："D:\nasubi\inuichiba-ffimages" 配下の "_headers"
+ - ファイルパスを `_headres` の中に定義する
+    - Windowsの場合 `D:\nasubi\inuichiba-ffimages` 配下の `_headers`
+    - Mac/Unix場合  `/Users/yourname/projectname/inuichiba-ffimages` 配下の `_headers`
 
 ---
 
@@ -86,7 +91,9 @@
    - Zone IDでのPurgeは使わない Pagesは通常のDNSサイトと別枠（対象外）
 
  ✅ 運用手順
-   - 更新(通常は `D:\nasubi\inuichiba-ffscripts\ffimages-upload-deploy.ps1` を使う)
+   - 更新(通常は以下を使う)
+      - Windowsの場合  `D:\nasubi\inuichiba-ffscripts\ffimages-upload-deploy.ps1`
+      - Mac/Unixの場合 `/Users/yourname/projectname/inuichiba-ffscripts/sh/ffimages-upload-deploy.sh`
 
        1. 画像やJSファイルなどを修正
        2. Gitでコミット & Push
@@ -97,7 +104,7 @@
        - git add -A
        - git commit -m "fix: update images"
        - git push (初回に `git push -u origin main` を実行していればこれだけでよい)
-       - npx wrangler login
+       - npx wrangler login(初回だけ)
        - npx wrangler pages deploy
        - (GitHubに登録され、CDNキャッシュも自動更新)
 
@@ -106,3 +113,25 @@
        - 通常はファイル名変更不要
        - **名前を変えずに** 即時確認可能
        - Zone IDでのPurgeは不要、無意味（Pagesは対象外）
+
+---
+
+## 🔧 初期設定（Macユーザー向け）
+
+1. Homebrewがない場合 → https://brew.sh/index_ja
+
+2. 必要ソフトをインストール：
+
+```bash
+brew install git
+brew install node
+npm install -g wrangler
+
+3. GitHubからクローン：
+
+git clone https://github.com/inuichiba/inuichiba-ffimages.git
+cd inuichiba-ffimages
+
+4. 単独でデプロイするには：
+
+npx wrangler pages deploy public

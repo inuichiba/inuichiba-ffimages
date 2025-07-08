@@ -1,3 +1,6 @@
 # キャッシュ制御(詳細はREADME.mdを参照)
 # _headers
 
+# 💻 OS依存ファイル
+.DS_Store
+Thumbs.db
