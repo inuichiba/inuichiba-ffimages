@@ -8,6 +8,7 @@
 *.webp    binary
 *.svg     binary
 *.ico     binary
+*.zip     binary
 
 # テキストファイル（最小限）
 README.md      text
