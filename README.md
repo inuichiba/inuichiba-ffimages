@@ -98,7 +98,7 @@ uri: ${baseDir}rules/rules_arrival.jpg  # /までがbaseDirに入る
       - Windowsの場合  `D:\nasubi\inuichiba-ffscripts\ffimages-upload-deploy.ps1`
       - Mac/Unixの場合 `/Users/yourname/projectname/inuichiba-ffscripts/sh/ffimages-upload-deploy.sh`
 
- ✅ スクリプトで行われること
+ ✅ スクリプトで行われていること
  
 ```sh
 1. 画像やJSファイルなどを修正
@@ -118,29 +118,3 @@ npx wrangler pages deploy # GitHubに登録され、CDNキャッシュも自動�
        - **名前を変えずに** 即時確認可能(5~10分程度かかる場合もある)
        - Zone IDでのPurgeは不要、無意味（Pagesは対象外）
 
----
-
-## 🔧 初期設定（Macユーザー向け：詳細は README-MAC.md を参照のこと）
-
-1. Homebrewがない場合 → https://brew.sh/index_ja
-
-2. 必要ソフトをインストール：
-
-```bash
-brew install git
-brew install node
-npm install -g wrangler
-```
-
-3. GitHubからクローン：
-
-```bash
-git clone https://github.com/inuichiba/inuichiba-ffimages.git
-cd inuichiba-ffimages
-```
-
-4. 単独でデプロイするには(ここは通常スクリプトを使いましょう)：
-
-```bash
-npx wrangler pages deploy public
-```
